@@ -4,16 +4,16 @@ public class UIManager : MonoBehaviour
 {
     private void OnEnable()
     {
-        PlayerController.OnPlayerDeath += HandlePlayerDeath;
+        PlayerManager.OnPlayerDeath += HandlePlayerDeath;
     }
 
     private void OnDisable()
     {
-        PlayerController.OnPlayerDeath -= HandlePlayerDeath;
+        PlayerManager.OnPlayerDeath -= HandlePlayerDeath;
     }
 
     private void HandlePlayerDeath()
     {
-        Debug.Log("Updating Player Death UI");
+        Debug.Log($"[{this.GetType().Name}] Updating Player Death UI");
     }
 }

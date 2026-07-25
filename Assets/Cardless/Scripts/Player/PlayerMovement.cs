@@ -35,4 +35,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void StopMovement()
+    {
+        _movement = Vector2.zero;
+        _rb.linearVelocity = Vector2.zero;
+    }
+
 }

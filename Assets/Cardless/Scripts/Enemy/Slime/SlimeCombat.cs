@@ -1,8 +1,10 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class SlimeCombat : MonoBehaviour
 {
+    public static event Action<float, string> OnEnemyAttack; // Event to notify when the enemy attacks
+
     [Header("Attribute")]
     [SerializeField] private string _enemyName = "Green Slime";
     [SerializeField] private float _maxHealth = 100f;
@@ -19,11 +21,9 @@ public class SlimeCombat : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"{_enemyName} collided with {other.gameObject.name}");
-
         if (other.gameObject.name == "Player")
         {
-            Debug.Log($"{_enemyName} is attacking the player for {_currentAttackDamage} damage!");
+            OnEnemyAttack?.Invoke(_currentAttackDamage, _enemyName);
         }
     }
 }

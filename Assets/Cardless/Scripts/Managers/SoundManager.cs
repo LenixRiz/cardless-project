@@ -2,22 +2,39 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public static SoundManager Instance { get; private set; }
 
-    [Header("Sound Effect")]
-    [SerializeField] private AudioClip deathSoundEffect;
+    [Header("Audio Source")]
+    [SerializeField] private AudioSource sfxSource;
 
-    private void OnEnable()
+    [Header("Clip")]
+    [SerializeField] private AudioClip deathSFX;
+
+    private void Awake()
     {
-        PlayerController.OnPlayerDeath += HandlePlayerDeath;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnEnable() 
+    {
+        PlayerManager.OnPlayerDeath += HandlePlayerDeath;
     }
 
     private void OnDisable()
     {
-        PlayerController.OnPlayerDeath -= HandlePlayerDeath;
+        PlayerManager.OnPlayerDeath -= HandlePlayerDeath;
     }
 
     private void HandlePlayerDeath()
     {
-        Debug.Log("Playing death sound effect.");
+        sfxSource.PlayOneShot(deathSFX);    
+        Debug.Log($"[{this.GetType().Name}] Playing death sound effect.");
     }
 }
