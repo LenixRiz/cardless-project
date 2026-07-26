@@ -8,14 +8,16 @@ public class PlayerManager : MonoBehaviour
 
     public static event Action OnPlayerDeath;
 
-    [Header("Attributes")]
+    [Header("Player Attributes")]
     [SerializeField] private string _playerName = "Player";
     [SerializeField] private float _playerMaxHealth = 100f;
     [SerializeField] private float _playerAttackDamage = 20f;
+    [SerializeField] private float _playerExperience = 0f;
 
     public string PlayerName => _playerName;
     public float PlayerMaxHealth => _playerMaxHealth;
     public float PlayerAttackDamage => _playerAttackDamage;
+    public float PlayerExperience => _playerExperience;
 
     private PlayerMovement _playerMovement;
     private PlayerHealth _playerHealth;

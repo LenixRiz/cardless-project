@@ -24,8 +24,6 @@ public class PlayerMovement : MonoBehaviour
     {
         _movement.Set(InputManager.Movement.x, InputManager.Movement.y);
 
-        _rb.linearVelocity = _movement * _moveSpeed;
-
         _animator.SetFloat(_horizontal, _movement.x);
         _animator.SetFloat(_vertical, _movement.y);
 
@@ -33,6 +31,11 @@ public class PlayerMovement : MonoBehaviour
         {
             _animator.SetFloat(_lastHorizontal, _movement.x);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        _rb.linearVelocity = _movement * _moveSpeed;
     }
 
     public void StopMovement()

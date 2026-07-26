@@ -1,13 +1,12 @@
-using System;
 using UnityEngine;
 
-public class SlimeCombat : MonoBehaviour
+public class GoblinCombat : MonoBehaviour
 {
-    [Header("Slime Attributes")]
-    [SerializeField] private string _enemyName = "Green Slime";
+    [Header("Goblin Attributes")]
+    [SerializeField] private string _enemyName = "Goblin";
     [SerializeField] private float _enemyMaxHealth = 100f;
     [SerializeField] private float _enemyAttackDamage = 15f;
-    [SerializeField] private float _enemyExperienceGiven = 5f;
+    [SerializeField] private float _enemyExperienceGiven = 15f;
 
     private float _currentHealth;
     private float _currentAttackDamage;
@@ -22,7 +21,7 @@ public class SlimeCombat : MonoBehaviour
     {
         if (other.TryGetComponent<IDamageable>(out var damageable))
         {
-            damageable?.TakeDamage(_currentAttackDamage, _enemyName);
+            damageable.TakeDamage(_currentAttackDamage, _enemyName);
         }
     }
-}   
+}

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IDamageable
 {
     public event Action<bool> IsDie; 
 
@@ -22,11 +22,6 @@ public class PlayerHealth : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    private void OnEnable()
-    {
-        SlimeCombat.OnEnemyAttack += TakeDamage;
-    }
-
     private void Start()
     {
         if (PlayerManager.Instance != null)
@@ -40,40 +35,45 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    public void TakeDamage(float damage, string name)
     {
-        SlimeCombat.OnEnemyAttack -= TakeDamage;
-    }
+        //Check if player is dead or invisible
+        if (_isDead || _isInvisible) return;
 
-    private void TakeDamage(float damage, string name)
-    {
+        //if not dead or invisible take damage
+        _currentHealth -= damage;
+        _animator?.SetTrigger("isHurt");
+        Debug.Log($"{_playerName} took {damage} damage from {name}! Current HP: {_currentHealth}");
 
-        if (_isDead) return;
-
-        if (Time.time >= _nextInvisibilityTime) 
-        {
-            TriggerInvisibility();
-        }
-        else if (!_isInvisible)
-        {
-            _currentHealth -= damage;
-            _animator?.SetTrigger("isHurt");
-            Debug.Log($"{_playerName} took {damage} damage from {name}! Current HP: {_currentHealth}");
-        }
-
+        //if health below 0 player dead and stop
         if (_currentHealth <= 0)
         {
             OnDie();
+            return;
+        }
+
+        //if player damaged or cooldown expired, invisibility active
+        if (Time.time >= _nextInvisibilityTime)
+        {
+            TriggerInvisibility();
         }
     }
 
-    private void TriggerInvisibility()
+    private async void TriggerInvisibility()
     {
         _isInvisible = true;
         _nextInvisibilityTime = Time.time + _invisibilityCooldown;
         Debug.Log($"[{this.GetType().Name}] Invisible for {_invisibilityDuration} seconds, next invisibility at {_nextInvisibilityTime}");
 
-        Invoke(nameof(RemoveInvisibility), _invisibilityDuration);
+        try
+        {
+            await Awaitable.WaitForSecondsAsync(_invisibilityDuration);
+            RemoveInvisibility();
+        }
+        catch (OperationCanceledException)
+        {
+            Debug.Log($"[{GetType().Name}] Invisibility canceled because player is dead");
+        }
     }
 
     private void RemoveInvisibility()
