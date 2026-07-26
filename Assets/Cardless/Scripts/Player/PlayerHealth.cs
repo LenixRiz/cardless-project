@@ -67,7 +67,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         try
         {
-            await Awaitable.WaitForSecondsAsync(_invisibilityDuration);
+            await Awaitable.WaitForSecondsAsync(_invisibilityDuration, destroyCancellationToken);
             RemoveInvisibility();
         }
         catch (OperationCanceledException)
