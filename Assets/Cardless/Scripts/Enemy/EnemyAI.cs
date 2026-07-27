@@ -11,14 +11,17 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float _detectionRange = 20f;
 
     private EnemyController _controller;
+    private EnemyCombat _combat;
     private Transform _playerTarget;
     private Rigidbody2D _rb;
 
     private float _distanceToPlayerTarget;
+    private float _nextAttackTime;
 
     private void Start()
     {
         _controller = GetComponent<EnemyController>();
+        _combat = GetComponent<EnemyCombat>();
         _rb = GetComponent<Rigidbody2D>();
 
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -88,6 +91,9 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackLogic()
     {
+
+        if (_combat == null) { Debug.LogWarning("EnemyCombat.cs not assigned"); return; }
+
         _rb.linearVelocity = Vector2.zero;
 
         if (_distanceToPlayerTarget > _controller.enemyData.enemyAttackRange)
@@ -95,7 +101,6 @@ public class EnemyAI : MonoBehaviour
             if (_controller.enemyData.enemyMovementType == EnemyMovementType.Mobile)
             {
                 currentState = EnemyState.Chase;
-                
             }
             else
             {
@@ -104,7 +109,12 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
-        Debug.Log($"{_controller.enemyData.enemyName} is attacking {PlayerManager.Instance.PlayerName}");
+        if (Time.time >= _nextAttackTime)
+        {
+            _combat.OnAttack(_playerTarget.position);
+
+            _nextAttackTime = Time.time + _controller.enemyData.enemyAttackCooldown;
+        }
     }
 
 }

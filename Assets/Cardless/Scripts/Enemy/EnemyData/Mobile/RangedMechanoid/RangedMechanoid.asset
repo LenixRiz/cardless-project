@@ -23,5 +23,5 @@ MonoBehaviour:
   enemyMaxSpeed: 3
   enemyMinSpeed: 5
   enemyAttackDamage: 10
-  enemyAttackSpeed: 0
-  enemyAttackRange: 5
+  enemyAttackCooldown: 0
+  enemyAttackRange: 10
