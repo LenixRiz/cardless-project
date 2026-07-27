@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4be34611fef14cf4eb211c8b3f3a060f, type: 3}
-  m_Name: AutoMortar
+  m_Name: RangedMechanoid
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  enemyId: 0
-  enemyName: 
-  enemyDescription: 
-  sprite: {fileID: 0}
+  enemyId: 1
+  enemyName: Ranged Mechanoid
+  enemyDescription: A weak mechanoid capable of shooting small projectile.
+  sprite: {fileID: 6090321300509548925, guid: b190cb60fd253cb4ab430fa77c355552, type: 3}
   enemyMovementType: 0
-  enemyAttackType: 0
-  enemyMaxHealth: 0
-  enemyMinHealth: 0
-  enemyMaxSpeed: 0
-  enemyMinSpeed: 0
-  enemyAttackDamage: 0
+  enemyAttackType: 1
+  enemyMaxHealth: 60
+  enemyMinHealth: 30
+  enemyMaxSpeed: 3
+  enemyMinSpeed: 5
+  enemyAttackDamage: 10
+  enemyAttackSpeed: 0
+  enemyAttackRange: 5

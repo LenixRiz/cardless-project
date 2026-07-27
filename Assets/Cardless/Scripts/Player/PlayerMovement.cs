@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed = 5f;
+    private float _moveSpeed;
 
     private Vector2 _movement;
 
@@ -17,7 +17,11 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+    }
 
+    private void Start()
+    {
+        _moveSpeed = PlayerManager.Instance.PlayerSpeed;
     }
 
     private void Update()

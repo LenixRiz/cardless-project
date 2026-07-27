@@ -10,16 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4be34611fef14cf4eb211c8b3f3a060f, type: 3}
-  m_Name: RangeMechanoid
+  m_Name: KamikazeMechanoid
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  enemyId: 1
-  enemyName: Ranged Mechanoid
-  enemyDescription: A weak mechanoid capable of shooting small projectile.
-  sprite: {fileID: 0}
+  enemyId: 2
+  enemyName: Kamikaze Mechanoid
+  enemyDescription: Fast runner mechanoid with small bomb attached to its core, producing
+    enough explosion to dent earth.
+  sprite: {fileID: -2145819919155707534, guid: 517801100ef5d4742988249a0402b1fb, type: 3}
   enemyMovementType: 0
-  enemyAttackType: 1
-  enemyMaxHealth: 60
-  enemyMinHealth: 30
-  enemyMaxSpeed: 3
+  enemyAttackType: 2
+  enemyMaxHealth: 30
+  enemyMinHealth: 10
+  enemyMaxSpeed: 10
   enemyMinSpeed: 5
-  enemyAttackDamage: 10
+  enemyAttackDamage: 25
+  enemyAttackSpeed: 0
+  enemyAttackRange: 0

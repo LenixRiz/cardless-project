@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4be34611fef14cf4eb211c8b3f3a060f, type: 3}
-  m_Name: KamikazeMechanoid
+  m_Name: AutoMortar
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  enemyId: 2
-  enemyName: Kamikaze Mechanoid
-  enemyDescription: Fast runner mechanoid with small bomb attached to its core, producing
-    enough explosion to dent earth.
-  sprite: {fileID: 0}
-  enemyMovementType: 0
-  enemyAttackType: 2
+  enemyId: 3
+  enemyName: Auto Mortar
+  enemyDescription: A static mechanoid its body resembles a tube, while cannot move
+    it can fire shells raining explosion into your position.
+  sprite: {fileID: -5004091236755160093, guid: ee935e74107760a458adeb27b0175212, type: 3}
+  enemyMovementType: 1
+  enemyAttackType: 1
   enemyMaxHealth: 30
-  enemyMinHealth: 10
-  enemyMaxSpeed: 10
-  enemyMinSpeed: 5
+  enemyMinHealth: 25
+  enemyMaxSpeed: 0
+  enemyMinSpeed: 0
   enemyAttackDamage: 25
+  enemyAttackSpeed: 0
+  enemyAttackRange: 0

@@ -42,7 +42,7 @@ public class EnemyData : ScriptableObject
     public float enemyMinSpeed;
     [Tooltip("How much damage does the enemy produce and their attack speed")]
     public float enemyAttackDamage;
-    public float enemyAttackSpeed;
+    public float enemyAttackCooldown;
     [Tooltip("How far can enemy ranged attack reach")]
     public float enemyAttackRange;
 

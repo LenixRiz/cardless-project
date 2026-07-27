@@ -13,11 +13,13 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float _playerMaxHealth = 100f;
     [SerializeField] private float _playerAttackDamage = 20f;
     [SerializeField] private float _playerExperience = 0f;
+    [SerializeField] private float _playerSpeed = 10f;
 
     public string PlayerName => _playerName;
     public float PlayerMaxHealth => _playerMaxHealth;
     public float PlayerAttackDamage => _playerAttackDamage;
     public float PlayerExperience => _playerExperience;
+    public float PlayerSpeed => _playerSpeed;
 
     private PlayerMovement _playerMovement;
     private PlayerHealth _playerHealth;

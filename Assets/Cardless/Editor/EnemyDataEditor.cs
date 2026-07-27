@@ -12,10 +12,12 @@ public class EnemyDataEditor : Editor
         //Untuk exclude yang ingin ditampilkan agar tidak digambar dulu di inspector
         DrawPropertiesExcluding(serializedObject, 
             "enemyId", "enemyName", "enemyDescription", "enemyMovementType", "enemyAttackType", "enemyMaxHealth", "enemyMinHealth", 
-            "enemyMaxSpeed", "enemyMinSpeed", "enemyAttackDamage", "enemyAttackRange", "enemyAttackSpeed");
+            "enemyMaxSpeed", "enemyMinSpeed", "enemyAttackDamage", "enemyAttackRange", "enemyAttackCooldown");
 
+        //Ambil prperty dari serializedObject
         //ditaruh diluar agar tetap keliatan dalam kondisi apapun
         SerializedProperty attackTypeProp = serializedObject.FindProperty("enemyAttackType");
+        SerializedProperty attackRangeProp = serializedObject.FindProperty("enemyAttackRange");
 
         EditorGUILayout.PropertyField(serializedObject.FindProperty("enemyId"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("enemyName"));
@@ -35,16 +37,8 @@ public class EnemyDataEditor : Editor
             GUI.enabled = true;
         }
 
-        if (data.enemyAttackType == EnemyAttackType.Ranged)
-        {
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Attack Range Settings", EditorStyles.boldLabel);
-
-            //Ambil prperty dari serializedObject
-            SerializedProperty attackRangeProp = serializedObject.FindProperty("enemyAttackRange");
-
-            EditorGUILayout.PropertyField(attackRangeProp);
-        }
+        EditorGUILayout.LabelField("Attack Range Settings", EditorStyles.boldLabel);
+        EditorGUILayout.PropertyField(attackRangeProp);
 
         if (data.enemyMovementType == EnemyMovementType.Mobile)
         {
@@ -59,14 +53,14 @@ public class EnemyDataEditor : Editor
             SerializedProperty minSpeedProp = serializedObject.FindProperty("enemyMinSpeed");
 
             EditorGUILayout.PropertyField(maxSpeedProp);
-            EditorGUILayout.PropertyField (minSpeedProp);
+            EditorGUILayout.PropertyField(minSpeedProp);
         }
 
         //EditorGUILayout.LabelField("CombatStats", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(serializedObject.FindProperty("enemyMaxHealth"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("enemyMinHealth"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("enemyAttackDamage"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("enemyAttackSpeed"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("enemyAttackCooldown"));
 
         serializedObject.ApplyModifiedProperties();
 

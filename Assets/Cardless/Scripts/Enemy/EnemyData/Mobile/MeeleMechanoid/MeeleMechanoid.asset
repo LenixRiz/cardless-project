@@ -16,7 +16,7 @@ MonoBehaviour:
   enemyName: Meele Mechanoid
   enemyDescription: A close combat mechanoid, using small but sharp blade to hurt
     anyone it sees.
-  sprite: {fileID: 0}
+  sprite: {fileID: 2376916200191167612, guid: a9e8cb6e1b4038b45a6a5fc2897f553b, type: 3}
   enemyMovementType: 0
   enemyAttackType: 0
   enemyMaxHealth: 100
@@ -24,3 +24,5 @@ MonoBehaviour:
   enemyMaxSpeed: 10
   enemyMinSpeed: 3
   enemyAttackDamage: 15
+  enemyAttackSpeed: 0
+  enemyAttackRange: 0
